@@ -1,23 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>The Last Social Media You'll Ever Need | Twotube</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-    {% include "header.html" %}
-    <nav id="sidebar">
-        <ul>
-            <li><a href="/">Главная</a></li>
-            <li><a href="/about/">О сайте</a></li>
-            <li><a href="/list/">Сообщения</a></li>
-        </ul>
-    </nav>
-
-    <div id="content">
-        Контент страницы
-    </div>
-    {% include "footer.html" %}
-</body>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,
+        shrink-to-fit=no">
+        <title>Пjследние обновления | Twotube</title>
+    </head>
+    <body>
+        <h1>Последния обновления на сайте</h1>
+        {% for post in posts %}
+        <h3>
+            Автор: {{ post.author.get_full_name }}, дата публикации: {{post.pub_date|date:"d M Y"}}
+        </h3>
+        <p>{{ post.text|linebreaksbr }}</p>
+        {% endfor %}
+    </body>
 </html>
