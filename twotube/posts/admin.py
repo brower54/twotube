@@ -1,6 +1,6 @@
 from django.contrib import admin
 # из файла models импортируем модель Post
-from .models import Post
+from .models import Group, Post
 
 class PostAdmin(admin.ModelAdmin):
     # перечисляем поля, которые будут отображаться в админке
@@ -12,6 +12,13 @@ class PostAdmin(admin.ModelAdmin):
     empty_value_display = "-пусто-" # это свойство сработает для всех колонок:
                                     #где пусто - там будет эта строка
 
+class GroupAdmin(admin.ModelAdmin):
+    list_display = ("pk", "title", "slug", "description")
+    search_fields = ("title",)
+    empty_value_display = "-пусто-"
+
+
 # при регистрации модели Post источником конфигурации для неё 
 # назначаем класс PostAdmin
 admin.site.register(Post, PostAdmin)
+admin.site.register(Group, GroupAdmin)
